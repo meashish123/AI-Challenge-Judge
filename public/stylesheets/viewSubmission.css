@@ -1,0 +1,178 @@
+.canvas-moves-parent {
+    position: relative;
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+
+#canvas-container {
+    position: relative;
+    /*float: left;*/
+    display: inline-block;
+
+    /*width: 306px;*/
+
+    height: 326px;
+    margin: 30px auto;
+
+    /*margin-right: 55%;*/
+}
+
+#moves-numbers-parent {
+    position: relative;
+    /*float: left;*/
+    display: inline-block;
+
+    overflow: hidden;
+    width: 100px;
+    height: 306px;
+    /*margin-top: 30px;*/
+    margin: 30px 30px;
+}
+
+#moves-numbers {
+    /*position: relative;*/
+    position: absolute;
+
+    /*width: 410px;*/
+    /*height: 306px;*/
+
+    left: 20px;
+    top: 132px;
+
+    text-align: center;
+    padding-left: 8.3%;
+
+    /*border: 1px solid red;*/
+    /*display: inline-block;*/
+}
+
+.turn-bob {
+    border-radius: 30px;
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: rgb(200, 200, 200);
+    margin: 3px;
+    font-size: 12px;
+
+    /*display: block;*/
+    /*float: left;*/
+    /*position: relative;*/
+}
+
+#canvas-sub-container {
+    position: relative;
+    width: 306px;
+    height: 306px;
+
+    margin: 0 auto;
+
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+}
+
+canvas {
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    right: 3px;
+    bottom: 3px;
+}
+
+#canvas-title-container {
+    width: 100%;
+    height: 80px;
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    /*border: 1px solid red;*/
+}
+
+.player-vs-caption {
+    line-height: 80px;
+    text-align: center;
+}
+
+.player-label {
+    opacity: 0.8;
+}
+.user-name-label {
+    opacity: 0.6;
+}
+
+.player-title {
+    background-color: rgb(240, 240, 240);
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 4px;
+    padding: 10px 30px;
+}
+
+.col-xs-5_5 {
+    float: left;
+    width: 45%;
+}
+
+.col-xs-1_0 {
+    float: left;
+    font-size: 19px;
+    font-family: "Segoe UI Light";
+    width: 10%;
+}
+
+.clear {
+    clear: both;
+}
+
+#next:before {
+    font: normal normal normal 15px/1 FontAwesome;
+    font-size: 1.4em;
+    content: "\f04e";
+}
+
+#play {
+    width: 30px;
+}
+#play:before {
+    width: 30px;
+}
+
+.play-btn:before {
+    font: normal normal normal 15px/1 FontAwesome;
+    font-size: 1.2em;
+    content: "\f04b";
+}
+
+.stop-btn:before {
+    font: normal normal normal 15px/1 FontAwesome;
+    font-size: 1.2em;
+    content: "\f04c";
+}
+
+#prev:before {
+    font: normal normal normal 15px/1 FontAwesome;
+    font-size: 1.2em;
+    content: "\f04a";
+}
+
+.canvas-btn {
+    outline: none;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+
+    -webkit-transition: all 100ms ease-out;
+    -moz-transition: all 100ms ease-out;
+    -o-transition: all 100ms ease-out;
+    transition: all 100ms ease-out;
+}
+.canvas-btn:hover {
+    color: #E83e36;
+}
+
+#button-group {
+    margin-top: 10px;
+    text-align: center;
+}

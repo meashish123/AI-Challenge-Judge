@@ -1,0 +1,198 @@
+<link rel='stylesheet' href='/font/font-awesome-4.5.0/css/font-awesome.css'/>
+<link rel='stylesheet' href='/stylesheets/problem.css'/>
+<link rel='stylesheet' href='/stylesheets/submissions.css'/>
+<link rel='stylesheet' href='/stylesheets/viewSubmission.css'/>
+
+<div id="inner-cell">
+    <div class="contest-header">
+        <div class="aparoksha-logo"></div>
+        <div class="schedule-caption"> Online coding contest April x, y PM</div>
+    </div>
+
+    <script>
+        var progress = <%=doc.progress%>;
+    </script>
+
+    <% if (doc.progress == 100) { %>
+        <div class="problem-container">
+            <div class="sub-title"><p>Battle</p></div>
+
+
+
+            <div id="canvas-title-container">
+                <div class="player-title col-xs-5_5" style="text-align: right;">
+                    <div class="row player-label">
+                        Player 1
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-10">
+                            <div class="name-label"> <%=doc.name1%> </div>
+                            <div class="user-name-label"> <%=doc.userName%> </div>
+                        </div>
+                        <div class="col-xs-2">
+                            <img src="images/canvas/q1.png">
+                            <% if (doc.game.winner == 1) { %>
+                                <img src="images/canvas/trophy.png" height="25" width="25"
+                                     style="position: absolute; left: 60px; top: 20px">
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+                <div class="player-vs col-xs-1_0">
+                    <div class="player-vs-caption"> VS </div>
+                </div>
+                <div class="player-title col-xs-5_5">
+                    <div class="row player-label">
+                        Player 2
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <img src="images/canvas/q2.png">
+                            <% if (doc.game.winner == 2) { %>
+                                <img src="images/canvas/trophy.png" height="25" width="25"
+                                     style="position: absolute; left: -15px; top: 20px">
+                            <% } %>
+                        </div>
+                        <div class="col-xs-10">
+                            <div class="name-label"> <%=doc.name2%> </div>
+                            <div class="user-name-label"> <%=doc.opponentUserName%> </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+
+            <div class="canvas-moves-parent">
+
+                <div id="canvas-container">
+                    <div id="canvas-sub-container">
+                        <canvas id="layer0" width="300" height="300"></canvas>
+                        <canvas id="layer3" width="300" height="300"></canvas>
+                        <canvas id="layer1" width="300" height="300"></canvas>
+                        <canvas id="layer2" width="300" height="300"></canvas>
+                    </div>
+
+                    <div id="button-group">
+                        <div class="button-container">
+                            <button id="prev" class="canvas-btn"></button>
+                            <button id="play" class="play-btn canvas-btn"></button>
+                            <button id="next" class="canvas-btn"></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!--<button id="prev"> Previous</button>-->
+                <!--<button id="next"> Next</button>-->
+                <!--<button id="play"> Play</button>-->
+                <!--<button id="stop"> Stop</button>-->
+
+                <div id="moves-numbers-parent">
+                    <div id="moves-numbers">
+                        <!--Moves<br><br>-->
+                        <% for (var a = 1; a <= 108; a++) { %>
+                                <div id="bob-<%=a%>" class="turn-bob"><%=a%></div>
+                        <% } %>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+
+        </div>
+
+        <div class="problem-container">
+            <div class="sub-title"><p>Moves Summary</p></div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <td>#</td>
+                        <td>Player</td>
+                        <td>Move</td>
+                        <td>Valid</td>
+                        <td>Time (sec)</td>
+                        <td>Status</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% var count = 1; %>
+                    <% doc.game.moves.forEach(function(move) { %>
+                        <tr>
+                            <td><%=count%></td>
+                            <td>
+                                <% if (move.player == 1) { %>
+                                    <%=doc.name1%>
+                                <% } else { %>
+                                    <%=doc.name2%>
+                                <% } %>
+                            </td>
+                            <% if (!move.move && !move.error) {
+                                move.move = "Runtime Error\n";
+                                move.error = "Either your code didn't print anything or got Memory Limit Exceeded."
+                            } %>
+                            <td class="tooltip1" title="<%=move.error%>">
+                                <% if (move.status == 0) { %>
+                                    <%=move.move.replace(/\r?\n/g, "↵")%>
+                                <% } else if (move.status == 1) { %>
+                                    <%=move.move.replace(/\r?\n/g, "↵")%>
+                                <% } else if (move.status == 2) { %>
+                                    <%=move.move.replace(/\r?\n/g, "↵")%>
+                                <% } else if (move.status == 3) { %>
+                                    Runtime Error
+                                <% } %>
+                            </td>
+                            <td><%=move.valid%></td>
+                            <td><%=move.time%></td>
+                            <td>
+                                <% if (move.status == 0 && !move.valid) { %>
+                                    <img src="images/icons/p5.gif">
+                                <% } else { %>
+                                    <img src="images/icons/p<%=move.status%>.gif">
+                                <% } %>
+                            </td>
+                        </tr>
+                    <% count++; %>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+
+    <% } else { %>
+        <div class="problem-container">
+            <div class="sub-title"><p>Game in progress</p></div>
+            <img src="images/canvas/loading4.gif" height="150" width="200" style="margin: 10px auto; position: relative; display: block">
+        </div>
+    <% } %>
+
+    <!--<div class="problem-container">-->
+        <!--<div class="sub-title"><p>Code</p>-->
+            <!--<p style="float: right; border: 0">Language: <%= doc.languageName %></p></div>-->
+
+        <!--<div id="editor" style="height: 500px; width: 100%"><%= doc.code %></div>-->
+    <!--</div>-->
+</div>
+
+<script src="/scripts/ace-src/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="/plugins/jcanvas.min.js" type="text/javascript" charset="utf-8"></script>
+<script>
+//    var editor = ace.edit("editor");
+    //editor.setTheme("ace/theme/monokai");
+    //editor.getSession().setMode("ace/mode/javascript");
+//    editor.renderer.setScrollMargin(10, 10);
+//    editor.setOptions({
+//        readOnly: true
+//    });
+
+    <% if (doc.progress == 100) { %>
+        var game = <%- JSON.stringify(doc.game) %>;
+    <% } else { %>
+        var game = {};
+    <% } %>
+</script>
+<script src="/plugins/jquery.tooltipster.min.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    //$('.tooltip1').tooltipster();
+</script>
+<script src="/scripts/canvas.js" type="text/javascript" charset="utf-8"></script>

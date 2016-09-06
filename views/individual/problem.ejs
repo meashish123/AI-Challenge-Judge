@@ -1,0 +1,249 @@
+<link rel='stylesheet' href='/stylesheets/problem.css'/>
+
+<div id="inner-cell">
+    <div class="contest-header">
+        <div class="aparoksha-logo"></div>
+        <div class="schedule-caption"> Online coding contest April x, y PM</div>
+    </div>
+
+    <div class="problem-container">
+        <div class="sub-title"><p>GAME OF BOTS</p></div>
+
+        <p>
+            Game of the Bots is a two-player board game which is played on a 6x6 grid of cells. Each player
+            has one bot having initial configuration as shown in the image.
+        </p>
+
+        <img src="images/problem/p1.png" class="problem-img"/>
+
+        <p> Players will make moves alternatively. Rules for the game are as follows. </p>
+        <ul>
+            <li> Each player can move <b>one step</b> in any of the 8 directions in the surrounding cells.</li>
+            <li> Both the bots cannot be in the same cell at the same time, i.e. you cannot move to the cell
+                where other player's bot is present.
+            </li>
+
+            <li> Initially the values of all the cells is zero.</li>
+            <li> As you move out of a cell, value of the cell gets decreased by 1.</li>
+            <li> Player cannot move to the cell which have value -3. Means <b> each cell can be visited at most three
+                    times. </b></li>
+            <li><b>When a cell gets visited 3 times it will have value -3 means it will be blocked</b>. And therefore no
+                one can
+                go to that cell.
+            </li>
+            <li><b>The player that will make the last move will be the winner.</b></li>
+            <li> Indexing will be zero based.</li>
+        </ul>
+
+
+        <p style="font-size: 18px; margin-top: 50px"><b> Example #1 </b></p>
+        <p> Current State: </p>
+        <div style="text-align: center">
+            <img src="images/problem/p1.png"/>
+            <img src="images/problem/s1.png"/>
+        </div>
+
+        <p> Player 1's move: <b>(1, 1)</b><br> (cell which have visited once will have -1 value. When a player leave the
+            cell its
+            value decreased by 1)</p>
+        <div style="text-align: center">
+            <img src="images/problem/p2.png"/>
+            <img src="images/problem/s2.png"/>
+        </div>
+
+        <p style="font-size: 18px;  margin-top: 50px"><b> Example #2 </b></p>
+        <p> Current State: </p>
+        <div style="text-align: center">
+            <img src="images/problem/p3.png"/>
+            <img src="images/problem/s3.png"/>
+        </div>
+
+        <p> Player 2's move: <b>(3, 5)</b><br> (cell which have visited twice will have -2 value. When a player leave
+            the cell its
+            value decreased by 1)</p>
+        <div style="text-align: center">
+            <img src="images/problem/p4.png"/>
+            <img src="images/problem/s4.png"/>
+        </div>
+
+
+        <p style="font-size: 18px;  margin-top: 50px"><b> Example #3 </b></p>
+        <p> Current State: </p>
+        <div style="text-align: center">
+            <img src="images/problem/p5.png"/>
+            <img src="images/problem/s5.png"/>
+        </div>
+
+        <p> Player 2's move: <b>(1, 4)</b><br> (cell which have visited 3 time will have -3 value. When a player leave
+            the cell its
+            value decreased by 1)</p>
+        <div style="text-align: center">
+            <img src="images/problem/p6.png"/>
+            <img src="images/problem/s6.png"/>
+        </div>
+
+    </div>
+
+    <div class="problem-container">
+        <div class="sub-title"><p>INPUT/OUTPUT FORMAT</p></div>
+
+        <p><b> Input Format: </b></p>
+        <p>First line of input contains a single number 1 or 2, which is your player id.<br>
+            Then following six lines contain a 6x6 matrix consisting only of 0, -1, -2 and -3 denoting the state of
+            game.<br>
+            Next line will contain two numbers x and y demoting the position (row and column) of Player 1.<br>
+            Last line will also contain two numbers x and y demoting the position (row and column) of Player 2.<br>
+        </p>
+
+        <p><b> Note: Player id in the first line denotes your id which can be 1 or 2. If player id is 2 then
+                you have to play as player 2 and vice versa. </b></p>
+
+        <p><b>Output Format: </b></p>
+        <p>You have to output two numbers x and y denoting your move i.e. final position of your piece.</p>
+
+
+        <p> Note: Program will exit after printing its current move.<br>
+            Time Limit: 2 sec (for each move) </p>
+    </div>
+
+    <div class="problem-container">
+        <div class="sub-title"><p>SAMPLE I/O</p></div>
+
+        <p>Input</p>
+        <p>
+        <pre>
+1
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0
+5 5</pre>
+
+        </p>
+        <p>Output</p>
+        <p>
+        <pre>1 1</pre>
+        </p>
+
+    </div>
+
+    <div class="problem-container">
+        <div class="sub-title">
+            <p>YOUR CODE</p>
+            <select id="lang-selector">
+                <option value="7">C++</option>
+                <option value="8">Java</option>
+                <!--<option value="0">Python</option>-->
+            </select>
+            <div class="play-against"> Language:</div>
+        </div>
+
+        <div id="editor" style="height: 500px; width: 100%"></div>
+
+        <button type="button" class="play">Play</button>
+        <select id="opponent-selector">
+
+            <% opponents.forEach(function(opponent) { %>
+            <option value="<%= opponent %>"><%= opponent %></option>
+            <% }); %>
+
+            <!---->
+            <!--<option value="meashish">meashish</option>-->
+            <!--<option value="dragonslayerx">dragonslayerx</option>-->
+            <!--<option value="lucifer">lucifer</option>-->
+        </select>
+        <div class="play-against">Play against last Submission of:</div>
+        <div class="clear"></div>
+
+
+    </div>
+
+
+    <div class="problem-container">
+        <div class="sub-title"><p>INSTRUCTIONS</p></div>
+        <ol>
+            <li>Choose the C, C++ or Java as your programming language and implement your bot in that
+                language.
+            </li>
+            <li>The challenge will have 1 game for which you will have to write the bot. There will detailed set
+                of instructions for the game. Your bot must follow those instructions and give the output in the
+                allowed format only, else the bot will fail.
+            </li>
+            <li>Once you have written the bot, you have 2 options. First is, ‘Play against bot’ that will play
+                your bot against the system generated bot. Second is ‘Play against user’ allows you to play your
+                bot against the bot written by any other user.
+            </li>
+            <li>You can submit your bot by playing your bot against the system bot, by selecting ‘Play against
+                bot’.
+            </li>
+            <li>The leaderboard will be generated by playing all the bots against each other in a tournament
+                format and will be done once the contest ends.
+            </li>
+            <li>Your last submitted bot before the challenge ends will be considered as the final submission.
+            </li>
+            <li>All inputs are from STDIN and output to STDOUT.</li>
+        </ol>
+    </div>
+
+</div>
+
+<script src="/scripts/ace-src/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    //editor.setTheme("ace/theme/monokai");
+    editor.getSession().setMode("ace/mode/c_cpp");
+    //    editor.getSession().setMode("ace/mode/javascript");
+    editor.renderer.setScrollMargin(10, 10);
+
+    var cppTemplate = "#include <iostream>\r\n#include <cstdlib> \r\n#include <ctime>\r\n#include <vector>\r\n\r\nusing namespace std;\r\n\r\nvoid outputMove(int player, int state[][6], int x1, int y1, int x2, int y2) {\r\n\t\/\/ Write your code logic here.\r\n\t\/\/ Print two numbers denoting indices of final position of your bot.\r\n\r\n\t\r\n}\r\n\r\nint main() {\r\n\tint player;\r\n\tcin >> player;\r\n\r\n\tint state[6][6];\r\n\r\n\tfor (int i = 0; i < 6; i++) {\r\n\t\tfor (int j = 0; j < 6; j++) {\r\n\t\t\tcin >> state[i][j];\r\n\t\t}\r\n\t}\r\n\r\n\tint x1, y1, x2, y2;\r\n\tcin >> x1 >> y1 >> x2 >> y2;\r\n\r\n\toutputMove(player, state, x1, y1, x2, y2);\r\n}";
+    var javaTemplate = "import java.util.*;\r\n\r\nclass Main {\r\n\r\n\tvoid outputMove(int player, int state[][], int x1, int y1, int x2, int y2) {\r\n        \/\/ write your code logic here\r\n        \/\/ Print two numbers denoting the indices of final position of your bot.\r\n        \r\n        \r\n\t}\r\n\r\n\tpublic static void main(String args[]) {\r\n\t\tScanner in = new Scanner(System.in);\r\n\t\tint player = in.nextInt();\r\n\t\t\r\n\t\tint state[][] = new int[6][6];\r\n\r\n\t\tfor (int i = 0; i < 6; i++) {\r\n\t\t\tfor (int j = 0; j < 6; j++) {\r\n\t\t\t\tstate[i][j] = in.nextInt();\r\n\t\t\t}\r\n\t\t}\r\n\r\n\t\tint x1 = in.nextInt();\r\n\t\tint y1 = in.nextInt();\r\n\t\tint x2 = in.nextInt();\r\n\t\tint y2 = in.nextInt();\r\n\r\n\t\tnew Main().outputMove(player, state, x1, y1, x2, y2);\r\n\t}\r\n}\r\n";
+    editor.getSession().setValue(cppTemplate);
+
+    $("#lang-selector").change(function () {
+        //alert("The text has been changed." + $(this).val());
+        if ($(this).val() == 7) {
+            editor.getSession().setMode("ace/mode/c_cpp");
+            editor.getSession().setValue(cppTemplate);
+        } else {
+            editor.getSession().setMode("ace/mode/java");
+            editor.getSession().setValue(javaTemplate);
+        }
+    });
+
+    $('.play').click(function () {
+        $(".play").prop("disabled", true).css('opacity', '0.5');
+
+        $.post("receiveSubmission",
+                {
+                    userName: "meashish",
+                    code: editor.getSession().getValue(),
+                    language: $("#lang-selector").val(),
+                    opponent: $('#opponent-selector').val()
+                },
+                function (data, status) {
+                    //console.log("Data: " + data + "\nStatus: " + status);
+//                    alert(data);
+
+                    if (JSON.parse(data).error) {
+                        ohSnap(JSON.parse(data).error, {color: 'red'});
+//                        alert(JSON.parse(data).error);
+//                        window.location = window.location.pathname + window.location.search;
+//                        window.location = window.location.pathname + window.location.search + "#login";
+                    } else if (status == "success") {
+                        ohSnap('Code submitted successfully!', {color: 'green'});
+                        window.history.pushState("object or string", "Title", "/submissions");
+                        loadPage('/submissions');
+
+//                        window.history.pushState("object or string", "Title", "/submissions");
+//                        loadPage('/submissions');
+                    }
+
+                    $(".play").prop("disabled", false).css('opacity', '1');
+                });
+
+        //$('.play').prop('disabled', true).css("opacity", "0.5");
+    });
+</script>

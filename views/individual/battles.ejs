@@ -1,0 +1,52 @@
+<link rel='stylesheet' href='/stylesheets/problem.css'/>
+<link rel='stylesheet' href='/stylesheets/submissions.css'/>
+
+<div id="inner-cell">
+    <div class="contest-header">
+        <div class="aparoksha-logo"></div>
+        <div class="schedule-caption"> Online coding contest April x, y PM</div>
+    </div>
+
+    <div class="problem-container">
+        <div class="sub-title"><p>Games of <%= docs[0].userName%> </p></div>
+
+        <table>
+            <thead>
+                <tr>
+                    <td> UserNme </td>
+                    <td> Played Against </td>
+                    <td> Winner </td>
+                    <td> Details </td>
+                </tr>
+            </thead>
+
+            <tbody>
+            <%
+                docs.forEach(function(doc) {
+            %>
+
+                    <tr>
+                        <td> <%= doc.userName%> </td>
+                        <td> <%= doc.opponentUserName %> </td>
+                        <td> <% if (doc.progress == 100) { %>
+                                    <% if (doc.game.winner == 1) { %>
+                                        <%= doc.userName %>
+                                    <% } else { %>
+                                        <%= doc.opponentUserName %>
+                                    <% } %>
+                            <% } else { %>
+                                    <span style="opacity: 0.5">Game in progress</span>
+                            <% } %>
+                        </td>
+                        <td> <a target="_blank" href="/gamefinal?id=<%= doc.submissionsId %>"> view</a> </td>
+                    </tr>
+
+            <%
+                });
+            %>
+            </tbody>
+
+        </table>
+    </div>
+
+</div>

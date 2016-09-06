@@ -1,0 +1,61 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/nodejs',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'mongoose-paginator' ]
+2 info using npm@1.3.10
+3 info using node@v0.10.25
+4 warn package.json API@1.0.0 No description
+5 warn package.json API@1.0.0 No repository field.
+6 warn package.json API@1.0.0 No README data
+7 verbose readDependencies using package.json deps
+8 verbose cache add [ 'mongoose-paginator', null ]
+9 verbose cache add name=undefined spec="mongoose-paginator" args=["mongoose-paginator",null]
+10 verbose parsed url { protocol: null,
+10 verbose parsed url   slashes: null,
+10 verbose parsed url   auth: null,
+10 verbose parsed url   host: null,
+10 verbose parsed url   port: null,
+10 verbose parsed url   hostname: null,
+10 verbose parsed url   hash: null,
+10 verbose parsed url   search: null,
+10 verbose parsed url   query: null,
+10 verbose parsed url   pathname: 'mongoose-paginator',
+10 verbose parsed url   path: 'mongoose-paginator',
+10 verbose parsed url   href: 'mongoose-paginator' }
+11 silly lockFile eb84e114-mongoose-paginator mongoose-paginator
+12 verbose lock mongoose-paginator /home/ashish/.npm/eb84e114-mongoose-paginator.lock
+13 silly lockFile eb84e114-mongoose-paginator mongoose-paginator
+14 silly lockFile eb84e114-mongoose-paginator mongoose-paginator
+15 verbose addNamed [ 'mongoose-paginator', '' ]
+16 verbose addNamed [ null, '*' ]
+17 silly lockFile 44a57e0a-mongoose-paginator mongoose-paginator@
+18 verbose lock mongoose-paginator@ /home/ashish/.npm/44a57e0a-mongoose-paginator.lock
+19 silly addNameRange { name: 'mongoose-paginator', range: '*', hasData: false }
+20 verbose url raw mongoose-paginator
+21 verbose url resolving [ 'https://registry.npmjs.org/', './mongoose-paginator' ]
+22 verbose url resolved https://registry.npmjs.org/mongoose-paginator
+23 info trying registry request attempt 1 at 04:10:29
+24 http GET https://registry.npmjs.org/mongoose-paginator
+25 info retry will retry, error on last attempt: Error: tunneling socket could not be established, cause=Parse Error
+26 info trying registry request attempt 2 at 04:10:39
+27 http GET https://registry.npmjs.org/mongoose-paginator
+28 info retry will retry, error on last attempt: Error: tunneling socket could not be established, cause=Parse Error
+29 info trying registry request attempt 3 at 04:11:39
+30 http GET https://registry.npmjs.org/mongoose-paginator
+31 silly lockFile 44a57e0a-mongoose-paginator mongoose-paginator@
+32 silly lockFile 44a57e0a-mongoose-paginator mongoose-paginator@
+33 error network tunneling socket could not be established, cause=Parse Error
+33 error network This is most likely not a problem with npm itself
+33 error network and is related to network connectivity.
+33 error network In most cases you are behind a proxy or have bad network settings.
+33 error network
+33 error network If you are behind a proxy, please make sure that the
+33 error network 'proxy' config is set properly.  See: 'npm help config'
+34 error System Linux 4.2.0-34-generic
+35 error command "/usr/bin/nodejs" "/usr/bin/npm" "install" "mongoose-paginator"
+36 error cwd /home/ashish/server/judge
+37 error node -v v0.10.25
+38 error npm -v 1.3.10
+39 error code ECONNRESET
+40 verbose exit [ 1, true ]

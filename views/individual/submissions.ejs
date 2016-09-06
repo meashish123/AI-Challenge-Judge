@@ -1,0 +1,61 @@
+<link rel='stylesheet' href='/stylesheets/problem.css'/>
+<link rel='stylesheet' href='/stylesheets/submissions.css'/>
+
+<div id="inner-cell">
+    <div class="contest-header">
+        <div class="aparoksha-logo"></div>
+        <div class="schedule-caption"> Online coding contest April x, y PM</div>
+    </div>
+
+    <div class="problem-container">
+        <div class="sub-title"><p>MY SUBMISSIONS</p></div>
+
+        <table>
+            <thead>
+                <tr>
+                    <td> Problem </td>
+                    <td> Language </td>
+                    <td> Played Against </td>
+                    <td> Winner </td>
+                    <td> Details </td>
+                    <td>  </td>
+                </tr>
+            </thead>
+
+            <tbody>
+            <%
+                docs.forEach(function(doc) {
+            %>
+
+                    <tr>
+                        <td> Bot Battle </td>
+                        <td> <%= doc.languageName %> </td>
+                        <td> <%= doc.opponentUserName %> </td>
+                        <td> <% if (doc.progress == 100) { %>
+                                    <% if (doc.game.winner == 1) { %>
+                                        You
+                                    <% } else { %>
+                                        <%= doc.opponentUserName %>
+                                    <% } %>
+                            <% } else { %>
+                                    <span style="opacity: 0.5">Game in progress</span>
+                            <% } %>
+                        </td>
+                        <td> <a target="_blank" href="/viewSubmission?id=<%= doc.submissionsId %>"> view</a> </td>
+                        <td>
+                            <span data-livestamp="<%= doc.createdAt %>">July 17, 2008</span>
+                        </td>
+                    </tr>
+
+            <%
+                });
+            %>
+            </tbody>
+
+        </table>
+    </div>
+
+</div>
+
+<script src="/plugins/moment.js" type="text/javascript"></script>
+<script src="/plugins/livestamp.min.js" type="text/javascript"></script>

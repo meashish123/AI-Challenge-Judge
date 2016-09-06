@@ -1,0 +1,21 @@
+table {
+    width: 100%;
+}
+
+thead td {
+    background: #F4F4F4;
+    border-right: 1px solid rgb(230, 230, 230);
+    border-bottom: 1px solid rgb(230, 230, 230);
+}
+
+tbody td {
+    border-bottom: 1px solid rgb(240, 240, 240);
+}
+
+tbody tr:nth-child(2n) {
+    background-color: rgb(245, 245, 245);
+}
+
+td {
+    padding: 10px 10px 10px 20px;
+}

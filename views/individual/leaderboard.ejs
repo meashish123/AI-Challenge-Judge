@@ -1,0 +1,40 @@
+<link rel='stylesheet' href='/stylesheets/problem.css'/>
+<link rel='stylesheet' href='/stylesheets/submissions.css'/>
+
+<div id="inner-cell">
+    <div class="contest-header">
+        <div class="aparoksha-logo"></div>
+        <div class="schedule-caption"> Online coding contest April x, y PM</div>
+    </div>
+
+    <div class="problem-container">
+        <div class="sub-title"><p>Leaderboard</p></div>
+
+        <table>
+            <thead>
+            <tr>
+                <td> UserName </td>
+                <td> Score </td>
+                <td>  </td>
+            </tr>
+            </thead>
+
+            <tbody>
+            <%
+            userScores.forEach(function(userScore) {
+            %>
+
+                <tr>
+                    <td> <%= userScore[0] %> </td>
+                    <td> <%= userScore[1] %> </td>
+                    <td> <a href="/battles?userName=<%= userScore[0] %>"> view </a> </td>
+                </tr>
+
+            <%
+            });
+            %>
+            </tbody>
+
+        </table>
+    </div>
+</div>

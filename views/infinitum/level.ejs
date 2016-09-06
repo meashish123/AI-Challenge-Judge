@@ -1,0 +1,37 @@
+<link rel='stylesheet' href='/infinitum/stylesheets/problem.css'/>
+<link rel='stylesheet' href='/infinitum/stylesheets/submissions.css'/>
+
+<div id="inner-cell">
+    <div class="contest-header">
+        <div class="aparoksha-logo"></div>
+        <div class="schedule-caption">  Infinitum, April 1  </div>
+    </div>
+
+    <div class="problem-container">
+        <div class="sub-title"><p>Level <%=level%></p></div>
+
+        <table>
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>Problem Name</td>
+                </tr>
+            </thead>
+            <tbody>
+            <% problems.forEach(function(problem) { %>
+                <tr>
+                    <td> <%=problem.id%> </td>
+                    <td>
+                        <% if (problem.solved) { %>
+                            <a style="color: green" href="/infinitum/problem?id=<%=problem.id%>"><%=problem.name%></a>&nbsp;&nbsp;<img src="/images/icons/p0.gif">
+                        <% } else { %>
+                            <a href="/infinitum/problem?id=<%=problem.id%>"><%=problem.name%></a>
+                        <% } %>
+                    </td>
+                </tr>
+            <% }); %>
+            </tbody>
+        </table>
+
+    </div>
+</div>
