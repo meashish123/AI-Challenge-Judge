@@ -84,9 +84,6 @@ if (progress == 100) {
         if (!running) {
             running = true;
 
-            //$("#play").fadeOut("fast", "swing", function() {
-            //    $("#play").addClass('stop-btn').removeClass('play-btn').fadeIn("fast", "swing");
-            //});
             $("#play").addClass('stop-btn').removeClass('play-btn');
             $("#prev").prop('disabled', true);
             $("#next").prop('disabled', true);
@@ -98,9 +95,6 @@ if (progress == 100) {
         } else {
             running = false;
 
-            //$("#play").fadeOut("fast", "swing", function() {
-            //    $("#play").removeClass('stop-btn').addClass('play-btn').fadeIn("fast", "swing");
-            //});
             $("#play").removeClass('stop-btn').addClass('play-btn');
             $("#prev").prop('disabled', false);
             $("#next").prop('disabled', false);
@@ -137,10 +131,8 @@ if (progress == 100) {
                 }
                 if ((-arr[i][j]) == 3) {
                     $('#layer3').drawRect({
-                        fillStyle: "rgba(255, 210, 0, 0.5)", //"rgba(235, 62, 54, 0.6)",
+                        fillStyle: "rgba(255, 210, 0, 0.5)",
                         y: i * multiple, x: j * multiple,
-                        //strokeStyle: "rgba(235, 62, 54, 1)",
-                        //strokeWidth: 2,
                         width: multiple,
                         height: multiple,
                         fromCenter: false
@@ -151,7 +143,7 @@ if (progress == 100) {
                     var p3 = [(j + 1) * multiple, (i + 1) * multiple];
                     var p4 = [j * multiple, (i + 1) * multiple];
 
-                    var color = "rgba(255, 210, 0, 1)";// "rgba(235, 62, 54, 1)";
+                    var color = "rgba(255, 210, 0, 1)";
                     if (i == 0 || arr[i][j] != arr[i - 1][j]) {
                         drawLine("#layer3", color, p1, p2);
                     }
@@ -209,10 +201,8 @@ if (progress == 100) {
                 }
                 if ((-arr[i][j]) == 3) {
                     $('#layer3').drawRect({
-                        fillStyle: "rgba(255, 210, 0, 0.5)", //"rgba(235, 62, 54, 0.6)",
+                        fillStyle: "rgba(255, 210, 0, 0.5)",
                         y: i * multiple, x: j * multiple,
-                        //strokeStyle: "rgba(235, 62, 54, 1)",
-                        //strokeWidth: 2,
                         width: multiple,
                         height: multiple,
                         fromCenter: false
@@ -223,7 +213,7 @@ if (progress == 100) {
                     var p3 = [(j + 1) * multiple, (i + 1) * multiple];
                     var p4 = [j * multiple, (i + 1) * multiple];
 
-                    var color = "rgba(255, 210, 0, 1)";// "rgba(235, 62, 54, 1)";
+                    var color = "rgba(255, 210, 0, 1)";
                     if (i == 0 || arr[i][j] != arr[i - 1][j]) {
                         drawLine("#layer3", color, p1, p2);
                     }

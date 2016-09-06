@@ -166,25 +166,11 @@
         </div>
     <% } %>
 
-    <!--<div class="problem-container">-->
-        <!--<div class="sub-title"><p>Code</p>-->
-            <!--<p style="float: right; border: 0">Language: <%= doc.languageName %></p></div>-->
-
-        <!--<div id="editor" style="height: 500px; width: 100%"><%= doc.code %></div>-->
-    <!--</div>-->
 </div>
 
 <script src="/scripts/ace-src/ace.js" type="text/javascript" charset="utf-8"></script>
 <script src="/plugins/jcanvas.min.js" type="text/javascript" charset="utf-8"></script>
 <script>
-//    var editor = ace.edit("editor");
-    //editor.setTheme("ace/theme/monokai");
-    //editor.getSession().setMode("ace/mode/javascript");
-//    editor.renderer.setScrollMargin(10, 10);
-//    editor.setOptions({
-//        readOnly: true
-//    });
-
     <% if (doc.progress == 100) { %>
         var game = <%- JSON.stringify(doc.game) %>;
     <% } else { %>
@@ -192,7 +178,4 @@
     <% } %>
 </script>
 <script src="/plugins/jquery.tooltipster.min.js" type="text/javascript" charset="utf-8"></script>
-<script>
-    //$('.tooltip1').tooltipster();
-</script>
 <script src="/scripts/canvas.js" type="text/javascript" charset="utf-8"></script>
