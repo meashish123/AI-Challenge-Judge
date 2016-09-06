@@ -10,7 +10,6 @@ var cors = require('cors');
 var routes = require('./routes/index');
 var login = require('./routes/login');
 var register = require('./routes/register');
-var users = require('./routes/users');
 var fetch = require('./routes/fetch');
 var verify = require('./routes/verify');
 var logout = require('./routes/logout');
@@ -19,9 +18,6 @@ var receiveSubmission = require('./routes/receiveSubmission');
 var updateProfile = require('./routes/updateProfile');
 
 var add = require('./routes/add');
-var receiveInfinitumSubmission = require('./routes/infinitum/receiveInfinitumSubmission');
-var fetch2 = require('./routes/infinitum/fetch2');
-var infinitumIndex = require('./routes/infinitum/index');
 
 var app = express();
 
@@ -49,13 +45,7 @@ app.use('/verify', verify);
 app.use('/add', add);
 app.use('/updateProfile', updateProfile);
 
-app.use('/receiveInfinitumSubmission', receiveInfinitumSubmission);
-app.use('/fetch2', fetch2);
-app.use('/infinitum', infinitumIndex);
-
 app.use('*', routes);
-//app.use('/login', login);
-//app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -87,6 +77,5 @@ app.use(function (err, req, res, next) {
         error: {}
     });
 });
-
 
 module.exports = app;

@@ -1,8 +1,8 @@
 var Rule = require('../game/Rule');
 var Compiler = require('compiler');
 
-// 2 TLE: "\nExecution Timed Out"
 // 1 Compilation Error: "Compilation Failed\n"
+// 2 TLE: "\nExecution Timed Out"
 // 3 RTE:
 
 var OK = 0;
@@ -29,7 +29,6 @@ module.exports = function (code1, lang1, code2, lang2) {
 var play = function (state, code1, lang1, code2, lang2, player, game, callback, count) {
     count++;
     console.log("Running", count);
-    //console.log(state.toString(player));
 
     var code, lang;
     if (player == 1) {
@@ -41,8 +40,6 @@ var play = function (state, code1, lang1, code2, lang2, player, game, callback, 
     }
 
     if (!state.canMakeMove(player)) {
-        //console.log("Player", player, "cannot Make move");
-
         console.log("count", count);
         game.winner = 3 - player;
         callback(game);
@@ -50,13 +47,8 @@ var play = function (state, code1, lang1, code2, lang2, player, game, callback, 
     }
 
     Compiler.compile(lang, code, state.toString(player), function (data) {
-        //console.log("output: ", JSON.stringify(data.output));
-        //console.log("error: ", JSON.stringify(data.errors));
-        //console.log("time: ", JSON.stringify(data.time));
-
         var moveObject = {
             player: player,
-            //state: JSON.parse(JSON.stringify(state.state)),
             move: data.output,
             time: data.time,
             error: data.errors
@@ -76,8 +68,6 @@ var play = function (state, code1, lang1, code2, lang2, player, game, callback, 
         }
 
         if (!Rule.isValidOutput(data.output)) {
-            //console.log("Invalid Output");
-
             moveObject.valid = false;
             game.moves.push(moveObject);
 
@@ -89,8 +79,6 @@ var play = function (state, code1, lang1, code2, lang2, player, game, callback, 
         var move = Rule.getMoveFromOutput(data.output);
 
         if (!Rule.isValidMove(state, player, move)) {
-            //console.log("Invalid Move");
-
             moveObject.valid = false;
             game.moves.push(moveObject);
 

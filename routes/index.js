@@ -3,12 +3,9 @@ var fs = require('fs-extra');
 var router = express.Router();
 var Models = require("../database/Models");
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
 
-//var Compiler = require('compiler');
 var Judge = require("../judge/Judge");
 var User = Models.User;
-var Submission = Models.Submission;
 
 mongoose.connect('mongodb://localhost/test');
 var db = mongoose.connection;

@@ -92,11 +92,6 @@ var contest = new Contest({
     startTime: new Date(new Date().getTime() + 2 * 86400000),
     duration: 2 * 86400000
 });
-//contest.save(function(err) {
-//    if (!err) {
-//        console.log('contest saved successfully');
-//    }
-//});
 
 exports.Contest = Contest;
 exports.InfinitumSubmission = mongoose.model('InfinitumSubmission', infinitumSubmissionsSchema);

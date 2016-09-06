@@ -73,7 +73,7 @@ module.exports = function (x1, y1, x2, y2) {
 
     this.get = function(i, j) {
         return this.state[i][j];
-    }
+    };
 
     this.decrement = function(i, j) {
         this.state[i][j]--;

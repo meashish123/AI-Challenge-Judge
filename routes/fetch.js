@@ -16,8 +16,6 @@ router.get('/', function (req, res, next) {
 
         var current = new Date().getTime();
 
-        //console.log(start, duration, current);
-
         var started = false;
         var remaining = 0;
         if (current >= start && current <= (start + duration)) {
@@ -28,8 +26,6 @@ router.get('/', function (req, res, next) {
 
         res.render('individual/home', {title: 'Express', started: started, remaining: remaining});
     });
-
-
 });
 
 router.get('/generateLeaderboarddfsdfdfdf', function (req, res, next) {
@@ -87,7 +83,6 @@ router.get('/generateLeaderboarddfsdfdfdf', function (req, res, next) {
     res.send("SD");
 });
 
-
 function completeOneGame() {
     Game.find().where({progress: 0}).limit(10).exec(function (err, docs) {
         var count = docs.length;
@@ -117,10 +112,7 @@ function completeOneGame() {
                     );
 
                     console.log("game");
-                    //for (var i = 0; i < game.moves.length; i++) {
-                    //    console.log("Player:", JSON.stringify(game.moves[i].player), " move:", game.moves[i].move);
-                    //}
-                    //console.log("Winner:", game.winner);
+
                     console.log(JSON.stringify(game));
                 });
             });
@@ -132,18 +124,6 @@ var loginMessage = "Oh Snap! You need to sign in to view that page!";
 var submissionMessage = "Oh snap! You don't have permission to view this.";
 var notStartedYetMessage = "Oh snap! Contest has not started yet.";
 
-//router.get('/login', function (req, res, next) {
-//    res.render('individual/login', {title: 'Express'});
-//});
-
-//router.get('/canvas', function (req, res, next) {
-//    res.render('individual/canvas', {title: 'Express'});
-//});
-
-//router.get('/infinitum', function(req, res, next) {
-//    res.render('infinitum/home');
-//});
-
 router.get('/problem', function (req, res, next) {
     Contest.findOne().where({name: "AI"}).exec(function (err, doc) {
         var start = doc.startTime.getTime();
@@ -151,10 +131,6 @@ router.get('/problem', function (req, res, next) {
 
         var current = new Date().getTime();
 
-        //console.log(start, duration, current);
-
-        var started = false;
-        var remaining = 0;
         if (current >= start && current <= (start + duration)) {
             var id = req.cookies.id;
             if (!id) {
@@ -191,10 +167,6 @@ router.get('/submissions', function (req, res, next) {
 
         var current = new Date().getTime();
 
-        //console.log(start, duration, current);
-
-        var started = false;
-        var remaining = 0;
         if (current >= start && current <= (start + duration)) {
             doForSubmission(req, res, next);
         } else {
@@ -216,24 +188,8 @@ router.get('/recentGames', function (req, res, next) {
         return;
     }
 
-    //res.send("as");
-    //return;
-
-    //console.log("page", req.query.page);
-    //if (typeof Submission.paginate != "undefined") {
-    //    // safe to use the function
-    //    console.log("safe");
-    //} else {
-    //    console.log("not safe");
-    //}
-
     try {
         Submission.find({progress: 100}).skip(10 * req.query.page).limit(10).exec(function (err, docs) {
-            //console.log("ds", docs.length);
-            //res.send("as");
-            //console.log("page", req.query.page);
-            //console.log(docs);
-            //
             docs.forEach(function (doc) {
                 doc.languageName = getLanguageFromCode(doc.language);
             });
@@ -291,11 +247,9 @@ function doForSubmission(req, res, next) {
         }).exec(function (err, doc) {
             if (err || doc == null) {
                 res.clearCookie("id");
-                //res.cookie('id' , '0', {expire : new Date()});
                 res.send(JSON.stringify(obj));
             } else {
                 var userName = doc.userName;
-                //var userName = "meashish";
                 Submission.find()
                     .where({userName: userName})
                     .sort('-submissionsId')
@@ -312,7 +266,6 @@ function doForSubmission(req, res, next) {
 }
 
 router.get('/viewSubmission', function (req, res, next) {
-    //console.log(userName, submissionsId);
     var id = req.cookies.id;
     if (!id) {
         var obj = {
@@ -325,7 +278,6 @@ router.get('/viewSubmission', function (req, res, next) {
         }).exec(function (err, doc) {
             if (err || doc == null) {
                 res.clearCookie("id");
-                //res.cookie('id' , '0', {expire : new Date()});
                 res.send(JSON.stringify(obj));
             } else {
                 var userName = doc.userName;
@@ -353,11 +305,9 @@ router.get('/leaderboard', function (req, res, next) {
 
                     if (typeof userScores[doc.userName] == 'undefined') {
                         userScores[doc.userName] = 0;
-                        //console.log(doc.userName);
                     }
                     if (typeof userScores[doc.opponentUserName] == 'undefined') {
                         userScores[doc.opponentUserName] = 0;
-                        //console.log(doc.opponentUserName);
                     }
 
                     if (winner == 1) {
@@ -376,7 +326,6 @@ router.get('/leaderboard', function (req, res, next) {
                         return second[1] - first[1];
                     });
 
-                    //console.log(items);
                     res.render('individual/leaderboard', {userScores: items});
                 }
             });
@@ -387,8 +336,6 @@ router.get('/leaderboard', function (req, res, next) {
 });
 
 router.get('/battles', function (req, res, next) {
-    var userScores = {};
-
     var userName = req.query.userName;
     if (userName === undefined || userName == "" || userName == null) {
         var obj = {
@@ -454,7 +401,6 @@ router.get('/forum', function (req, res, next) {
         }).exec(function (err, doc) {
             if (err || doc == null) {
                 res.clearCookie("id");
-                //res.cookie('id' , '0', {expire : new Date()});
                 res.send(JSON.stringify(obj));
             } else {
                 res.render('individual/forum');
@@ -509,15 +455,6 @@ router.get('/gamefinal', function (req, res, next) {
         })
         .sort('-submissionsId')
         .exec(function (err, doc) {
-            //if (err || doc == null) {
-            //    res.send(JSON.stringify({error: submissionMessage}));
-            //    return;
-            //}
-            //if (userName != doc.userName) {
-            //    res.send(JSON.stringify({error: submissionMessage}));
-            //    return;
-            //}
-
             User.findOne().where({userName: doc.userName}).exec(function (err, doc1) {
                 if (err) {
                     throw err;
@@ -539,8 +476,6 @@ router.get('/gamefinal', function (req, res, next) {
 
                         res.render('individual/finalBattle', {doc: doc});
                     });
-
-
                 });
             });
         });
@@ -587,7 +522,6 @@ var getLanguageFromCode = function (code) {
     }
 };
 
-
 function getNextSequence(name, callback) {
     Counter.findAndModify({_id: name}, [], {$inc: {seq: 1}}, {}, function (err, counter) {
         if (err) {
@@ -604,7 +538,6 @@ function getLastSubmission(userName, callback) {
         .where({userName: userName})
         .sort('-submissionsId')
         .exec(function (err, doc) {
-            //console.log("found doc", JSON.stringify(doc));
             callback(doc);
         });
 }

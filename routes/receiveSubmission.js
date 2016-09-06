@@ -3,30 +3,12 @@ var router = express.Router();
 var Models = require("../database/Models");
 
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
 var Submission = Models.Submission;
-
 var User = Models.User;
-
 var Judge = require("../judge/Judge");
-
-
-////------------------ for next Sequence --------------------------//
-//var Counters = new Schema({
-//    _id: String,
-//    seq: Number
-//});
-//Counters.statics.findAndModify = function (query, sort, doc, options, callback) {
-//    return this.collection.findAndModify(query, sort, doc, options, callback);
-//};
-//var Counter = mongoose.model('counters', Counters);
-////---------------------------------------------------------------//
 var Counter = Models.Counter;
 
 router.post('/', function (req, res, next) {
-    //console.log("just got into receive submission");
-    //console.log(JSON.stringify(req.body));
-
     var obj = {
         error: "Please Login First"
     };
@@ -74,14 +56,12 @@ function receiveSubmission(userName, req, res) {
 function receiveSubmission2(userName, req, res) {
     console.log("received userName", userName);
     getNextSequence("submissionId", function (next) {
-        //console.log("got next submission sequence", next);
         getLastSubmission(req.body.opponent, function (doc) {
             if (doc == null) {
                 res.send(JSON.stringify({error: "Select a valid userName to play against"}));
                 return;
             }
 
-            //console.log("got opponent code");
             var sub1 = new Submission({
                 submissionsId: next,
                 userName: userName,
@@ -103,25 +83,6 @@ function receiveSubmission2(userName, req, res) {
 
             console.log("starting battle", userName, " vs " , req.body.opponent);
 
-            //judge.startBattle(function (game) {
-            //    Submission.update(
-            //        {submissionsId: next},
-            //        {progress: 100, game: game},
-            //        {multi: false},
-            //        function (err) {
-            //            console.log(err);
-            //
-            //            console.log("game updated successfully");
-            //        }
-            //    );
-            //
-            //    console.log("game");
-            //    //for (var i = 0; i < game.moves.length; i++) {
-            //    //    console.log("Player:", JSON.stringify(game.moves[i].player), " move:", game.moves[i].move);
-            //    //}
-            //    //console.log("Winner:", game.winner);
-            //    console.log(JSON.stringify(game));
-            //});
             res.send(JSON.stringify('received submission'));
         });
     });
@@ -131,13 +92,10 @@ function receiveSubmission2(userName, req, res) {
 doincomplete();
 
 function doincomplete() {
-    //console.log("called complete");
-
     Submission.find().where({progress: 0}).limit(2).exec(function (err, docs) {
         var count = docs.length;
 
         if (count == 0) {
-            //console.log("zero count");
             setTimeout(doincomplete, 1000);
         }
 
@@ -167,10 +125,6 @@ function doincomplete() {
                     );
 
                     console.log("game");
-                    //for (var i = 0; i < game.moves.length; i++) {
-                    //    console.log("Player:", JSON.stringify(game.moves[i].player), " move:", game.moves[i].move);
-                    //}
-                    //console.log("Winner:", game.winner);
                     console.log(JSON.stringify(game));
                 });
             });
@@ -196,7 +150,6 @@ function getLastSubmission(userName, callback) {
         .where({userName: userName})
         .sort('-submissionsId')
         .exec(function (err, doc) {
-            //console.log("found doc", JSON.stringify(doc));
             callback(doc);
         });
 }

@@ -1,1 +1,1 @@
-An online platform to host an AI Challenge
+Under Development
