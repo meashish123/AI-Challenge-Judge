@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var cors = require('cors');
 
+var init = require('./routes/init');
 var routes = require('./routes/index');
 var login = require('./routes/login');
 var register = require('./routes/register');
@@ -14,9 +15,7 @@ var fetch = require('./routes/fetch');
 var verify = require('./routes/verify');
 var logout = require('./routes/logout');
 var receiveSubmission = require('./routes/receiveSubmission');
-
 var updateProfile = require('./routes/updateProfile');
-
 var add = require('./routes/add');
 
 var app = express();
@@ -35,6 +34,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/init', init);
 app.use('/receiveSubmission', receiveSubmission);
 app.use('/login', login);
 app.use('/register', register);

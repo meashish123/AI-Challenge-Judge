@@ -14,6 +14,8 @@
 
         <% if (started) { %>
             <div class="yellow-button"> JOIN THE GAME</div>
+        <% } else if (ended) { %>
+            <div class="yellow-button"> Contest has ended</div>
         <% } else { %>
             <div id="counter" class="row clock"></div>
         <% } %>

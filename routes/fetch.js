@@ -17,14 +17,17 @@ router.get('/', function (req, res, next) {
         var current = new Date().getTime();
 
         var started = false;
+        var ended = false;
         var remaining = 0;
         if (current >= start && current <= (start + duration)) {
             started = true;
+        } else if (current > (start + duration)) {
+            ended = true;
         } else {
             remaining = start - current;
         }
 
-        res.render('individual/home', {title: 'Express', started: started, remaining: remaining});
+        res.render('individual/home', {title: 'Express', started: started, ended: ended, remaining: remaining});
     });
 });
 
@@ -111,9 +114,9 @@ function completeOneGame() {
                         }
                     );
 
-                    console.log("game");
+                    // console.log("game");
 
-                    console.log(JSON.stringify(game));
+                    // console.log(JSON.stringify(game));
                 });
             });
         });
@@ -123,6 +126,7 @@ function completeOneGame() {
 var loginMessage = "Oh Snap! You need to sign in to view that page!";
 var submissionMessage = "Oh snap! You don't have permission to view this.";
 var notStartedYetMessage = "Oh snap! Contest has not started yet.";
+var endedMessage = "Oh snap! Contest has ended.";
 
 router.get('/problem', function (req, res, next) {
     Contest.findOne().where({name: "AI"}).exec(function (err, doc) {
@@ -131,7 +135,15 @@ router.get('/problem', function (req, res, next) {
 
         var current = new Date().getTime();
 
+        var started = false;
+        var ended = false;
         if (current >= start && current <= (start + duration)) {
+            started = true;
+        } else if (current > (start + duration)) {
+            ended = true;
+        }
+
+        if (started) {
             var id = req.cookies.id;
             if (!id) {
                 var obj = {
@@ -154,6 +166,8 @@ router.get('/problem', function (req, res, next) {
                     }
                 });
             }
+        } else if (ended) {
+            res.send(JSON.stringify({error: endedMessage}));
         } else {
             res.send(JSON.stringify({error: notStartedYetMessage}));
         }
@@ -167,8 +181,18 @@ router.get('/submissions', function (req, res, next) {
 
         var current = new Date().getTime();
 
+        var started = false;
+        var ended = false;
         if (current >= start && current <= (start + duration)) {
+            started = true;
+        } else if (current > (start + duration)) {
+            ended = true;
+        }
+
+        if (started) {
             doForSubmission(req, res, next);
+        } else if (ended) {
+            res.send(JSON.stringify({error: endedMessage}));
         } else {
             res.send(JSON.stringify({error: notStartedYetMessage}));
         }
@@ -296,7 +320,7 @@ router.get('/leaderboard', function (req, res, next) {
         var count = userNames.length;
 
         userNames.forEach(function (userName) {
-            console.log(userName);
+            // console.log(userName);
             Game.find().where({userName: userName}).exec(function (err, docs) {
 
                 docs.forEach(function (doc) {
