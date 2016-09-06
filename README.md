@@ -5,15 +5,24 @@ The bot has to adhere to the rules of the game.
 Judge declares the winner, by the overall winner of the tournament.
 
 ## How does it look like!
-The platform looks like this.  
+* The platform looks like this.   
+
 ![Home](https://raw.githubusercontent.com/meashish123/AI-Challenge-Judge/master/screenshots/1.PNG)
-The problem description contains problem statement, input/output format and sample i/o.  
+
+* The problem description contains problem statement, input/output format and sample i/o.  
+
 ![Problem Description](https://raw.githubusercontent.com/meashish123/AI-Challenge-Judge/master/screenshots/2.PNG)
-You can write code in the code Editor.
+
+* You can write code in the code Editor.
+
 ![Code Editor](https://raw.githubusercontent.com/meashish123/AI-Challenge-Judge/master/screenshots/3.PNG)
-You can also view all your submissions anytime
+
+* You can also view all your submissions anytime
+
 ![Submissions](https://raw.githubusercontent.com/meashish123/AI-Challenge-Judge/master/screenshots/4.PNG)
-You can also see the whole game progress.
+
+* You can also see the whole game progress.
+
 ![Game Progress](https://raw.githubusercontent.com/meashish123/AI-Challenge-Judge/master/screenshots/5.PNG)
 
 ## Getting Started
